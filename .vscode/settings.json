@@ -1,0 +1,5 @@
+{
+    "c-cpp-compile-run.cpp-flags": "ListaProdutos.cpp PilhaCarrinho.cpp FilaCaixa.cpp ArvoreProdutos.cpp"
+}
+
+
