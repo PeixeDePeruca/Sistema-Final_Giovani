@@ -13,6 +13,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
 
 //cabecalhos das estruturas de dados
 #include "Produto.h"
@@ -20,12 +21,16 @@
 #include "PilhaCarrinho.h"
 #include "FilaCaixa.h"
 #include "ArvoreProdutos.h"
+#include "Algoritmos.h"
+std::vector<Produto> catalogoVetor;
+
 
 //função auxiliar para cadastrar produto na lista e na arvore ao mesmo tempo
 void cadastrarProdutoGeral(ListaProdutos& lista, NoArvore*& raiz, int codigo, std::string nome, double preco) {
     Produto novo = {codigo, nome, preco};
     inserirProdutoLista(lista, novo);
     inserirProdutoArvore(raiz, novo);
+    catalogoVetor.push_back(novo);
 }
 
 int main() {
@@ -105,6 +110,8 @@ int main() {
         std::cout << "8. Finalizar compra e entrar na fila (Fila)\n";
         std::cout << "9. Ver fila do caixa (Fila)\n";
         std::cout << "10. Atender proximo cliente no caixa (Fila)\n";
+        std::cout << "11. Ordenar produtos por preco (Merge Sort)\n";
+        std::cout << "12. Comparar Busca Sequencial vs Binaria\n";
         std::cout << "0. Sair\n";
         std::cout << "Escolha uma opcao: ";
         std::cin >> opcao;
@@ -254,6 +261,15 @@ if (opcao == 1) {
             } else {
                 std::cout << "Nao ha clientes na fila do caixa.\n";
             }
+
+    } else if (opcao == 11) {
+        exibirOrdenadoPorPreco(catalogoVetor.data(), catalogoVetor.size());
+    } else if (opcao == 12) {
+        int codBusca;
+        std::cout << "Digite o codigo do produto para comparar buscas: ";
+        std::cin >> codBusca;
+        compararBuscas(catalogoVetor.data(), catalogoVetor.size(), codBusca);
+  
         } else if (opcao == 0) {
             std::cout << "Encerrando o sistema e liberando memoria...\n";
         } else {
